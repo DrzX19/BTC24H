@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bitcoin Live Terminal</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <b>₿ BTC<span>24H</span></b>
+        <span id="status">● Conectando...</span>
+        <div class="actions">
+            <button id="theme">☀ Tema</button>
+            <button id="logout">↪ Sair</button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="stats">
+                <div><small>Bitcoin / USDT</small><strong id="price">—</strong></div>
+                <div><small>24h</small><strong id="change">—</strong></div>
+                <div><small>Máxima</small><strong id="high">—</strong></div>
+                <div><small>Mínima</small><strong id="low">—</strong></div>
+            </div>
+
+            <div class="card chart">
+                <div class="tools">
+                    <button data-i="1m" class="active">1m</button>
+                    <button data-i="5m">5m</button>
+                    <button data-i="15m">15m</button>
+                    <button data-i="1h">1h</button>
+                    <button data-i="4h">4h</button>
+                    <button data-i="1d">1D</button>
+                </div>
+                <div id="chart"></div>
+            </div>
+        </section>
+
+        <aside>
+            <div class="card">
+                <h3>Livro de ofertas</h3>
+                <div class="cols">
+                    <div>
+                        <b>Venda</b>
+                        <div id="asks"></div>
+                    </div>
+                    <div>
+                        <b>Compra</b>
+                        <div id="bids"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Negócios recentes</h3>
+                <div id="trades"></div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

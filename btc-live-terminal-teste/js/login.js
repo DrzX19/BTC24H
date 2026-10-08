@@ -1,0 +1,8 @@
+const $=s=>document.querySelector(s),form=$("#authForm"),switchMode=$("#switchMode"),message=$("#message");
+let register=false;
+const defaultEmail="admin@btclive.com",defaultPassword="123456";
+function msg(t,c="error"){message.textContent=t;message.className="message "+c}
+switchMode.onclick=()=>{register=!register;document.querySelectorAll(".register-only").forEach(x=>x.classList.toggle("hidden",!register));$("#formTitle").textContent=register?"Criar conta de teste":"Entrar na sua conta";$("#formSubtitle").textContent=register?"Crie um acesso local apenas para testar.":"Acesse seu terminal de Bitcoin em tempo real.";$("#submitBtn").textContent=register?"Criar conta":"Entrar";switchMode.textContent=register?"Já tenho uma conta → Entrar":"Ainda não tenho conta → Criar conta";msg("")};
+form.onsubmit=e=>{e.preventDefault();const email=$("#email").value.trim().toLowerCase(),password=$("#password").value;
+if(register){if($("#name").value.trim().length<2||password.length<6)return msg("Preencha nome e senha (mínimo 6 caracteres).");localStorage.setItem("btc_test_user",JSON.stringify({name:$("#name").value.trim(),email,password}));register=false;document.querySelectorAll(".register-only").forEach(x=>x.classList.add("hidden"));$("#formTitle").textContent="Entrar na sua conta";$("#submitBtn").textContent="Entrar";switchMode.textContent="Ainda não tenho conta → Criar conta";msg("Conta criada. Agora faça login.","ok");return}
+const u=JSON.parse(localStorage.getItem("btc_test_user")||"null");if((email===defaultEmail&&password===defaultPassword)||(u&&email===u.email&&password===u.password)){sessionStorage.setItem("btc_logged_in","1");location.href="index.html"}else msg("E-mail ou senha incorretos.")};
